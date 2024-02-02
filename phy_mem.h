@@ -1,4 +1,4 @@
-﻿#ifndef PHY_MEM_H_
+#ifndef PHY_MEM_H_
 #define PHY_MEM_H_
 //声明
 //////////////////////////////////////////////////////////////////////////
@@ -172,8 +172,8 @@ MY_STATIC inline size_t get_task_proc_phy_addr(struct task_struct* task, size_t 
 		printk_debug("pgd is null\n");
 		goto out;
 	}
-	printk_debug("pgd_val = 0x%lx pgd addr:0x%lx\n", (unsigned long int)pgd_val(*pgd), (unsigned long int)pgd_val(pgd));
-	printk_debug("init_mm pgd val:0x%lx,pgd addr:0x%lx\n", (unsigned long)pgd_val(*(mm->pgd)), pgd_val((mm->pgd)));
+	printk_debug("pgd_val = 0x%lx pgd addr:0x%lx\n", (unsigned long int)pgd_val(*pgd), (unsigned long int)pgd_val(pgd[0]));
+	printk_debug("init_mm pgd val:0x%lx,pgd addr:0x%lx\n", (unsigned long)pgd_val(*(mm->pgd)), pgd_val((mm->pgd[0])));
 	printk_debug("pgd_index = %d\n", pgd_index(virt_addr));
 	if (pgd_none(*pgd)) {
 		printk_debug("not mapped in pgd\n");
@@ -347,7 +347,7 @@ MY_STATIC inline size_t read_ram_physical_addr(size_t phy_addr, char* lpBuf, boo
 			printk_debug(KERN_INFO "Error in x_xlate_dev_mem_ptr:0x%llx\n", phy_addr);
 			break;
 		}
-		probe = x_probe_kernel_read(bounce, ptr, sz);
+		probe = __probe_kernel_read(bounce, ptr, sz);
 		unxlate_dev_mem_ptr(phy_addr, ptr);
 		if (probe) {
 			break;
