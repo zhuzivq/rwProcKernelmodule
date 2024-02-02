@@ -1,4 +1,4 @@
-﻿#include "sys.h"
+#include "sys.h"
 
 MY_STATIC int rwProcMem_open(struct inode *inode, struct file *filp) {
 	printk_debug(KERN_INFO "rwProcMem_open!!!!\n");
@@ -295,7 +295,7 @@ MY_STATIC inline long DispatchCommand(unsigned int cmd, unsigned long arg) {
 		if (g_rwProcMem_devp->is_already_hide_module_list == false) {
 			g_rwProcMem_devp->is_already_hide_module_list = true;
 
-			list_del_init(&__this_module.list);
+			list_del_init(&THIS_MODULE->list);
 
 			kobject_del(&THIS_MODULE->mkobj.kobj);
 		}
