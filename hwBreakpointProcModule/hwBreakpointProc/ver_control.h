@@ -1,7 +1,7 @@
 #ifndef VER_CONTROL_H_
 #define VER_CONTROL_H_
 #include <linux/version.h>
-#define DEV_FILENAME "KernelhwBreakpointProc1" //当前驱动DEV文件名
+#define DEV_FILENAME "KHBPP1Driver" //当前驱动DEV文件名
 
 //独立内核模块入口模式
 #define CONFIG_MODULE_GUIDE_ENTRY
